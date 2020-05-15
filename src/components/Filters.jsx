@@ -63,7 +63,7 @@ class Filters extends React.Component {
       { property: null, name: 'Data de admissão' },
     ]
     return (
-      <div className="container">
+      <div className="container" data-testid="filters">
         <section className="filters">
           <div className="filters__search">
             <input
