@@ -11,13 +11,15 @@ class Contacts extends React.Component {
 		fetch('https://5e82ac6c78337f00160ae496.mockapi.io/api/v1/contacts').then(
 			(response) => { return response.json() }
 		).then((data) => {
-			this.setState(() => ({ contacts: data }))
+      this.setState(() => ({ contacts: data }))
+      this.props.setAllContacts && this.props.setAllContacts(data)
 		})
 	}
 
   render() {
+    const contacts = this.props.filteredContacts ? this.props.filteredContacts : this.state.contacts;
     return (
-      <div className="container">
+			<div className="container">
         <section className="contacts">
           <article className="contact">
             <span className="contact__avatar" />
@@ -28,7 +30,7 @@ class Contacts extends React.Component {
             <span className="contact__data">Empresa</span>
             <span className="contact__data">Departamento</span>
           </article>
-          {this.state.contacts.map((contact) => (
+          {contacts.map((contact) => (
 						<Contact key={contact.id} data={contact} />
           ))}
         </section>
